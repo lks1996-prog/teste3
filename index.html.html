@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Nosso Amor</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #ffdce0, #ffe9f0);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      color: #b30059;
+      padding: 20px;
+      background-color: #fff0f5cc;
+      border-radius: 20px;
+      box-shadow: 0 0 20px #ff99c8;
+      max-width: 90vw;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    #timer {
+      font-size: 1.5em;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+
+    img {
+      width: 200px;
+      height: auto;
+      border-radius: 15px;
+      margin-bottom: 15px;
+      box-shadow: 0 0 10px #ffb3c6;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      transform: rotate(45deg);
+      animation: float 10s linear infinite;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: -10px;
+      top: 0;
+    }
+
+    @keyframes float {
+      0% {
+        bottom: -10px;
+        opacity: 1;
+      }
+      100% {
+        bottom: 100%;
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Substitua o src abaixo pelo link da sua imagem -->
+    <img src= "https://i.ibb.co/rKjXX6CL/Whats-App-Image-2025-06-09-at-23-10-58.jpg" alt="Whats-App-Image-2025-06-09-at-23-10-58" border="0" /></a>
+    <h1>Te amo!
+Estamos juntos há:</h1>
+    <div id="timer">Calculando...</div>
+  </div>
+
+  <script>
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.animationDuration = 5 + Math.random() * 5 + "s";
+      heart.style.opacity = Math.random();
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 10000);
+    }
+
+    setInterval(createHeart, 500);
+  </script>
+
+  <script>
+    const startDate = new Date("2015-08-15T00:00:00");
+
+    function updateTimer() {
+      const now = new Date();
+      let diff = now - startDate;
+
+      const seconds = Math.floor(diff / 1000) % 60;
+      const minutes = Math.floor(diff / (1000 * 60)) % 60;
+      const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+
+      let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      let years = Math.floor(days / 365.25);
+      days %= 365.25;
+      let months = Math.floor(days / 30.44);
+      days = Math.floor(days % 30.44);
+
+      document.getElementById("timer").textContent =
+        `${years} anos, ${months} meses, ${days} dias, ` +
+        `${hours} horas, ${minutes} minutos e ${seconds} segundos 💖`;
+    }
+
+    setInterval(updateTimer, 1000);
+    updateTimer();
+  </script>
+</body>
+</html>
